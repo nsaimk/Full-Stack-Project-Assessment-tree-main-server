@@ -24,6 +24,7 @@ jobs:
           npm install -g pm2 
           git push origin main
           npm install
+          npm fund
           pm2 start server.js
         env:
           HOST: http://54.81.156.64/
