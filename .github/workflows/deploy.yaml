@@ -21,4 +21,4 @@ jobs:
 
       - name: Deploy changes
         run: |
-          ssh -o StrictHostKeyChecking=no user@<your-ec2-instance-ip> 'cd /path/to/your/project && git pull && pm2 restart server'
+          ssh -o StrictHostKeyChecking=no ec2-user@54.81.156.64 'cd /home/ec2-user/Full-Stack-Project-Assessment-tree-main-server && git pull && pm2 restart server'
