@@ -27,6 +27,6 @@ jobs:
           npm fund
           pm2 start server.js
         env:
-          HOST: http://54.81.156.64/
+          HOST: 54.81.156.64/
           USERNAME: ec2-user
-          KEY: ${{ secrets.EC2_SSH_KEY }}
+          KEY: ${{ secrets.EC2_GITHUB_TOKEN }}
