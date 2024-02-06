@@ -29,4 +29,3 @@ jobs:
           HOST: http://54.81.156.64/
           USERNAME: ec2-user
           KEY: ${{ secrets.EC2_SSH_KEY }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
