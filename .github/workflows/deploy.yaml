@@ -16,10 +16,18 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18.14.0
+          node-version: 14.x
+
+      - name: Debug current directory
+        run: |
+          pwd
+          ls -l
+
+      - name: Print directory contents
+        run: ls -l /home/ec2-user/Full-Stack-Project-Assessment-tree-main-server
 
       - name: Install dependencies and deploy to EC2
-        working-directory: ./server
+        working-directory: /home/ec2-user/Full-Stack-Project-Assessment-tree-main-server
         run: |
           npm install
           npm install -g pm2 
