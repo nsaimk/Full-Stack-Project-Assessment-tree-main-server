@@ -1,4 +1,4 @@
-name: EC2 Deployment
+name: Deploy to EC2
 
 on:
   push:
@@ -7,18 +7,22 @@ on:
 
 jobs:
   deploy:
-    name: Deploy to EC2
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      
-      - name: Setup SSH
-        uses: webfactory/ssh-agent@v0.5.3
-        with:
-          ssh-private-key: ${{ secrets.EC2-Deployment-Key }}
 
-      - name: Deploy changes
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18.14.0
+
+      - name: Install dependencies and deploy to EC2
+        working-directory: ./server
         run: |
-          ssh -o StrictHostKeyChecking=no ec2-user@54.81.156.64 'cd /home/ec2-user/Full-Stack-Project-Assessment-tree-main-server && git pull && pm2 restart server'
+          npm install
+          npm install -g pm2 
+          git push origin main
+          npm install
+          ssh -o StrictHostKeyChecking=no -i ${{ secrets.EC2-Deployment-Key }} ec2-user@54.81.156.64 'cd /home/ec2-user/Full-Stack-Project-Assessment-tree-main-server && git pull && pm2 restart server'
